@@ -18,7 +18,7 @@ app:
   #   - Europe/London (伦敦时间 UTC+0/+1)
   # 完整时区列表: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   timezone: "Asia/Shanghai"
-  show_version_update: true           # 显示版本更新提示
+  show_version_update: false           # 显示版本更新提示
 
 
 # ===============================================================
@@ -63,14 +63,14 @@ platforms:
       name: "华尔街见闻"
     - id: "thepaper"
       name: "澎湃新闻"
-    - id: "bilibili-hot-search"
-      name: "bilibili 热搜"
+#    - id: "bilibili-hot-search"
+#      name: "bilibili 热搜"
     - id: "cls-hot"
       name: "财联社热门"
     - id: "ifeng"
       name: "凤凰网"
-    - id: "tieba"
-      name: "贴吧"
+#    - id: "tieba"
+#      name: "贴吧"
     - id: "weibo"
       name: "微博"
     - id: "douyin"
@@ -113,27 +113,108 @@ rss:
   # - 正整数：覆盖全局设置，只推送此天数内的文章
   # - 0：禁用此频道的新鲜度过滤，推送所有文章
   feeds:
-    - id: "hacker-news"
-      name: "Hacker News"
-      url: "https://hnrss.org/frontpage"
-      # max_age_days: 1               # 示例：只推送1天内的文章
-
-    - id: "ruanyifeng"
-      name: "阮一峰的网络日志"
-      url: "http://www.ruanyifeng.com/blog/atom.xml"
-      # max_age_days: 7               # 示例：推送7天内的文章（更新较慢的博客）
-    
-    - id: "yahoo-finance"
-      name: "雅虎财经"
-      url: "https://finance.yahoo.com/news/rssindex"
-      enabled: false                  # 禁用
-
     # 自定义源示例
     # - id: "custom-feed"
     #   name: "自定义源"
     #   url: "https://example.com/feed.xml"
     #   enabled: false
     #   max_age_days: 0               # 示例：禁用过滤，推送所有文章
+    
+    # ── 国际新闻 (News.opml 精选) ──────────────────────────────
+    # 侧重全球突发事件的覆盖速度与信源可靠性
+
+    - id: "google-news-top"
+      name: "Google News 头条 - 英文"
+      url: "https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en"
+      enabled: true
+      max_age_days: 1               # 时效性极强，只看24小时内的新闻
+
+    - id: "google-news-top-cn"
+      name: "Google News 头条 - 中文"
+      url: "https://news.google.com/rss?hl=zh-CN&gl=CN&ceid=CN:zh-Hans"
+      enabled: true
+      max_age_days: 1               # 时效性极强，只看24小时内的新闻
+
+    - id: "bbc-world"
+      name: "BBC News - 国际"
+      url: "http://feeds.bbci.co.uk/news/world/rss.xml"
+      enabled: true
+      max_age_days: 1               # 权威信源，关注最新报道
+
+    - id: "cnn-world"
+      name: "CNN - 国际新闻"
+      url: "http://rss.cnn.com/rss/edition_world.rss"
+      enabled: true
+      max_age_days: 1               # 突发新闻首选，聚焦当日动态
+
+    # ── 科学 (Science.opml 精选) ───────────────────────────────
+    # 平衡学术权威与大众科学发现
+
+    - id: "nature-journal"
+      name: "Nature 期刊"
+      url: "https://www.nature.com/nature.rss"
+      enabled: true
+      max_age_days: 7               # 顶级期刊，发布频率较低，保留一周
+
+    - id: "bbc-science"
+      name: "BBC News - 科学与环境"
+      url: "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml"
+      enabled: true
+      max_age_days: 3               # 大众科学新闻，3天内保持时效
+
+    - id: "physorg"
+      name: "Phys.org 科学快讯"
+      url: "https://phys.org/rss-feed/"
+      enabled: true
+      max_age_days: 2               # 更新频率极高，保留2天避免信息过载
+
+    # ── 科技 (Tech.opml 精选) ──────────────────────────────────
+    - id: "the-verge"
+      name: "The Verge - 全部文章"
+      url: "https://www.theverge.com/rss/index.xml"
+      enabled: true
+      max_age_days: 2               # 科技综合媒体，更新频繁，保留2天
+
+    # ── 金融与经济 ─────────────────────────────────────────────
+    - id: "yahoo-finance"
+      name: "雅虎财经"
+      url: "https://finance.yahoo.com/news/rssindex"
+      enabled: false                  # 禁用
+      max_age_days: 1               # 示例：只推送1天内的文章
+
+    - id: "ftchinese"
+      name: "FT中文网 - 每日更新"
+      url: "http://www.ftchinese.com/rss/news"
+      enabled: true
+      max_age_days: 1               # 国际财经视角，保留2天
+
+    - id: "huxiu"
+      name: "虎嗅网 - 商业资讯"
+      url: "https://rss.huxiu.com/"
+      enabled: true
+      max_age_days: 2               # 商业深度，保留2天
+
+    - id: "36kr"
+      name: "36氪 - 创投财经"
+      url: "https://36kr.com/feed"
+      enabled: true
+      max_age_days: 2               # 创投动态，保留2天
+
+    # ── 科技与 AI ──────────────────────────────────────────────
+    # 侧重 AI 前沿动态与科技深度内容
+
+    - id: "openai-blog"
+      name: "OpenAI Blog"
+      url: "https://openai.com/blog/rss.xml"
+      enabled: true
+      max_age_days: 7               # 官方博客发布频率低，保留一周
+
+    - id: "qbitai"
+      name: "量子位 - AI前沿"
+      url: "https://www.qbitai.com/feed"
+      enabled: true
+      max_age_days: 2               # AI快讯，更新频繁，保留2天
+
 
 
 # ===============================================================
@@ -191,11 +272,11 @@ display:
   #   1. 在此列表中
   #   2. 下方 regions 中对应开关为 true
   region_order:
+    - ai_analysis                     # 5️⃣ AI 分析区域
     - new_items                       # 1️⃣ 新增热点区域
     - hotlist                         # 2️⃣ 热榜区域（关键词匹配）
     - rss                             # 3️⃣ RSS 订阅区域
     - standalone                      # 4️⃣ 独立展示区
-    - ai_analysis                     # 5️⃣ AI 分析区域
 
   # 推送区域开关
   # 控制各区域是否启用（配合 region_order 使用）
@@ -207,9 +288,8 @@ display:
     rss: true                         # RSS 订阅区域
                                       # 开启后将对 RSS 进行关键词分析并在通知中展示
                                       # 关闭后跳过分析，但独立展示区不受影响
-
-    standalone: false                 # 独立展示区（完整热榜/RSS，不受关键词过滤）
     ai_analysis: true                 # AI 分析区域
+    standalone: false                 # 独立展示区（完整热榜/RSS，不受关键词过滤）
 
   # 📋 独立展示区配置
   # 用途：将指定平台的完整热榜/RSS 数据独立提取，不受关键词过滤影响
@@ -218,9 +298,9 @@ display:
   #   - AI 分析：由 ai.include_standalone 开关控制，将完整数据送入 AI 做深度分析
   # 两者共享此处的平台/RSS 配置，但开关互相独立（可只开 AI 分析、不推送展示）
   standalone:
-    platforms: ["zhihu", "wallstreetcn-hot"]     # 热榜平台 ID 列表（如 ["zhihu", "weibo"]）
-    rss_feeds: []                     # RSS 源 ID 列表（如 ["hacker-news"]）
-    max_items: 20                     # 每个源最多展示条数（0=不限制）
+    platforms: ["weibo","zhihu"]     # 热榜平台 ID 列表（如 ["zhihu", "weibo"]）
+    rss_feeds: ["google-news-top","google-news-top-cn","cnn-world", "wallstreetcn-hot","bbc-world"]                     # RSS 源 ID 列表（如 ["hacker-news"]）
+    max_items: 15                     # 每个源最多展示条数（0=不限制）
 
 
 # ===============================================================
@@ -309,7 +389,7 @@ storage:
   # 本地存储配置
   local:
     data_dir: "output"                # 数据目录
-    retention_days: 0                 # 保留天数（0=永久保留）
+    retention_days: 15                 # 保留天数（0=永久保留）
 
   # 远程存储配置（S3 兼容协议）
   # 支持: Cloudflare R2, 阿里云 OSS, 腾讯云 COS, AWS S3, MinIO 等

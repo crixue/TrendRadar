@@ -51,7 +51,8 @@ RUN set -ex && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir uv && \
+    uv pip install --system --no-cache-dir -i https://mirrors.aliyun.com/pypi/simple -r requirements.txt
 
 COPY docker/manage.py .
 COPY trendradar/ ./trendradar/
