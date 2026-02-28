@@ -1,3 +1,4 @@
+#docker build --build-arg BUILDKIT_INLINE_CACHE=1 -t art.local:8081/docker-release/trend-radar:${VERSION} -f .\docker\Dockerfile .
 FROM python:3.10-slim
 
 WORKDIR /app

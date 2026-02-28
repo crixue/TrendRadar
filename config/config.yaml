@@ -122,65 +122,80 @@ rss:
     
     # ── 国际新闻 (News.opml 精选) ──────────────────────────────
     # 侧重全球突发事件的覆盖速度与信源可靠性
-
-    - id: "google-news-top"
-      name: "Google News 头条 - 英文"
-      url: "https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en"
-      enabled: true
-      max_age_days: 1               # 时效性极强，只看24小时内的新闻
-
-    - id: "google-news-top-cn"
-      name: "Google News 头条 - 中文"
-      url: "https://news.google.com/rss?hl=zh-CN&gl=CN&ceid=CN:zh-Hans"
-      enabled: true
-      max_age_days: 1               # 时效性极强，只看24小时内的新闻
-
     - id: "bbc-world"
       name: "BBC News - 国际"
       url: "http://feeds.bbci.co.uk/news/world/rss.xml"
       enabled: true
       max_age_days: 1               # 权威信源，关注最新报道
 
-    - id: "cnn-world"
-      name: "CNN - 国际新闻"
-      url: "http://rss.cnn.com/rss/edition_world.rss"
+    - id: "Reuters"
+      name: "Reuters - 路透社"
+      url: "https://news.google.com/rss/search?q=site%3Areuters.com&hl=en-US&gl=US&ceid=US%3Aen"
+      enabled: true
+      max_age_days: 1               # 权威信源，关注最新报道
+
+    - id: "AP News"
+      name: "AP News - 美联社"
+      url: "https://news.google.com/rss/search?q=site%3Aapnews.com&hl=en-US&gl=US&ceid=US%3Aen"
       enabled: true
       max_age_days: 1               # 突发新闻首选，聚焦当日动态
 
-    # ── 科学 (Science.opml 精选) ───────────────────────────────
-    # 平衡学术权威与大众科学发现
+    - id: "google-news-top"
+      name: "Google News 头条"
+      url: "https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en"
+      enabled: true
+      max_age_days: 1               # 时效性极强，只看24小时内的新闻
 
+    # ── 科学 ───────────────────────────────
     - id: "nature-journal"
       name: "Nature 期刊"
       url: "https://www.nature.com/nature.rss"
       enabled: true
       max_age_days: 7               # 顶级期刊，发布频率较低，保留一周
 
-    - id: "bbc-science"
-      name: "BBC News - 科学与环境"
-      url: "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml"
+    - id: "Science"
+      name: "Science - 科学"
+      url: "https://www.science.org/rss/news_current.xml"
       enabled: true
       max_age_days: 3               # 大众科学新闻，3天内保持时效
 
-    - id: "physorg"
-      name: "Phys.org 科学快讯"
-      url: "https://phys.org/rss-feed/"
-      enabled: true
-      max_age_days: 2               # 更新频率极高，保留2天避免信息过载
-
-    # ── 科技 (Tech.opml 精选) ──────────────────────────────────
-    - id: "the-verge"
-      name: "The Verge - 全部文章"
-      url: "https://www.theverge.com/rss/index.xml"
+    # ── 科技  ──────────────────────────────────
+    - id: "MIT Technology Review"
+      name: "MIT Technology Review - 麻省理工科技评论"
+      url: "https://www.technologyreview.com/feed/"
       enabled: true
       max_age_days: 2               # 科技综合媒体，更新频繁，保留2天
 
+    - id: "Wired"
+      name: "Wired - 连线"
+      url: "https://www.cnbc.com/id/10000664/device/rss/rss.html"
+      enabled: true
+      max_age_days: 2
+
+    - id: "Ars Technica"
+      name: "Ars Technica - Ars 技术志"
+      url: "https://feeds.arstechnica.com/arstechnica/index"
+      enabled: true
+      max_age_days: 2
+
     # ── 金融与经济 ─────────────────────────────────────────────
-    - id: "yahoo-finance"
-      name: "雅虎财经"
-      url: "https://finance.yahoo.com/news/rssindex"
-      enabled: false                  # 禁用
-      max_age_days: 1               # 示例：只推送1天内的文章
+    - id: "Financial Times"
+      name: "Financial Times - 金融时报"
+      url: "https://www.ft.com/rss/home/international"
+      enabled: true
+      max_age_days: 2               # 示例：只推送1天内的文章
+
+    - id: "Bloomberg"
+      name: "Bloomberg - 彭博社"
+      url: "https://feeds.bloomberg.com/markets/news.rss"
+      enabled: true
+      max_age_days: 2
+
+    - id: "Economist"
+      name: "Economist - 经济学人"
+      url: "https://www.economist.com/finance-and-economics/rss.xml"
+      enabled: true
+      max_age_days: 2
 
     - id: "ftchinese"
       name: "FT中文网 - 每日更新"
@@ -200,7 +215,7 @@ rss:
       enabled: true
       max_age_days: 2               # 创投动态，保留2天
 
-    # ── 科技与 AI ──────────────────────────────────────────────
+    # ── AI ──────────────────────────────────────────────
     # 侧重 AI 前沿动态与科技深度内容
 
     - id: "openai-blog"
@@ -236,7 +251,7 @@ rss:
 #    • 适用场景：避免重复信息干扰
 # ===============================================================
 report:
-  mode: "current"                     # 可选: daily | current | incremental
+  mode: "daily"                     # 可选: daily | current | incremental
                                       # ⚠️ 开启调度系统后，此值会被当前时间段的 report_mode 覆盖
 
 
@@ -251,7 +266,7 @@ report:
 
   rank_threshold: 5                   # 排名高亮阈值
 
-  max_news_per_keyword: 0             # 每个关键词最大显示数量（0=不限制）
+  max_news_per_keyword: 10             # 每个关键词最大显示数量（0=不限制）
 
 
 # ===============================================================
@@ -299,7 +314,7 @@ display:
   # 两者共享此处的平台/RSS 配置，但开关互相独立（可只开 AI 分析、不推送展示）
   standalone:
     platforms: ["weibo","zhihu"]     # 热榜平台 ID 列表（如 ["zhihu", "weibo"]）
-    rss_feeds: ["google-news-top","google-news-top-cn","cnn-world", "wallstreetcn-hot","bbc-world"]                     # RSS 源 ID 列表（如 ["hacker-news"]）
+    rss_feeds: ["google-news-top","cnn-world", "wallstreetcn-hot","bbc-world"]                     # RSS 源 ID 列表（如 ["hacker-news"]）
     max_items: 15                     # 每个源最多展示条数（0=不限制）
 
 
@@ -511,7 +526,7 @@ ai_analysis:
   mode: "follow_report"
 
   # 分析内容配置
-  max_news_for_analysis: 150        # 热榜+RSS 合计参与分析的新闻数量上限（控制成本关键项）
+  max_news_for_analysis: 300        # 热榜+RSS 合计参与分析的新闻数量上限（控制成本关键项）
                                     # 热榜优先占用配额，RSS 使用剩余配额；独立展示区不受此限制
                                     # 推送消息顶部会显示实际的 AI 分析数供参考
 
@@ -523,9 +538,9 @@ ai_analysis:
                                       # GitHub Action 部署默认推送约 20 次（每小时推送一次）， 约 0.1 元/天
                                       # Docker 部署默认推送 48 次(每半小时推送一次)， 约 0.2 元/天
 
-  include_rss: false                # 是否包含 RSS 内容进行分析
+  include_rss: true                # 是否包含 RSS 内容进行分析
   
-  include_standalone: true          # 是否将独立展示区数据纳入 AI 分析（只需上方 display 区的 standalone 配置了平台/RSS 即可）
+  include_standalone: false          # 是否将独立展示区数据纳入 AI 分析（只需上方 display 区的 standalone 配置了平台/RSS 即可）
 
   include_rank_timeline: true       # 是否传递完整排名时间线
                                     # false: 使用简化格式（排名范围+时间范围+出现次数）
@@ -568,15 +583,15 @@ advanced:
   # 热榜爬虫技术参数
   crawler:
     request_interval: 2000            # 请求间隔（毫秒）
-    use_proxy: false                  # 是否启用代理
-    default_proxy: "http://127.0.0.1:10801"
+    use_proxy: true                  # 是否启用代理
+    default_proxy: "http://haproxy-svc.ha-proxy.svc.cluster.local:3128"
 
   # RSS 设置
   rss:
     request_interval: 1000            # 请求间隔（毫秒）
-    timeout: 15                       # 请求超时（秒）
-    use_proxy: false                  # 是否使用代理
-    proxy_url: ""                     # RSS 专属代理（留空则使用 crawler.default_proxy）
+    timeout: 20                       # 请求超时（秒）
+    use_proxy: true                  # 是否使用代理
+    proxy_url: "http://haproxy-svc.ha-proxy.svc.cluster.local:3128"                     # RSS 专属代理（留空则使用 crawler.default_proxy）
 
   # 排序权重（用于重新排序不同平台的热搜）
   # 合起来等于 1
